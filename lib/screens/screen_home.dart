@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:morse_flasher/functions.dart';
 
 class ScreenHome extends StatelessWidget {
-  const ScreenHome({Key? key}) : super(key: key);
-
+  ScreenHome({Key? key}) : super(key: key);
+  final messageController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,8 +13,9 @@ class ScreenHome extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-            const TextField(
-              decoration: InputDecoration(
+            TextField(
+              controller: messageController,
+              decoration: const InputDecoration(
                   border: OutlineInputBorder(), hintText: "Message"),
               maxLines: 15,
             ),
@@ -21,7 +23,11 @@ class ScreenHome extends StatelessWidget {
               height: 15,
             ),
             ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  final message = messageController.text;
+                  final encrypted = textToMorse(message.toLowerCase());
+                  print(encrypted);
+                },
                 icon: const Icon(Icons.flashlight_on),
                 label: const Text("Flash the Message"))
           ],
