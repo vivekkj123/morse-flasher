@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:morse_flasher/functions.dart';
+import 'package:torch_light/torch_light.dart';
 
 class ScreenHome extends StatelessWidget {
   ScreenHome({Key? key}) : super(key: key);
@@ -23,10 +24,29 @@ class ScreenHome extends StatelessWidget {
               height: 15,
             ),
             ElevatedButton.icon(
-                onPressed: () {
+                onPressed: () async {
                   final message = messageController.text;
                   final encrypted = textToMorse(message.toLowerCase());
-                  print(encrypted);
+                  if (await TorchLight.isTorchAvailable()) {
+                    blinkMorse(encrypted);
+                  } else {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext ctx) {
+                          return AlertDialog(
+                            title: const Text("Error"),
+                            content: const Text(
+                                "Can't Access your Camera.. Please try again later.."),
+                            actions: [
+                              TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(ctx);
+                                  },
+                                  child: const Text("OK"))
+                            ],
+                          );
+                        });
+                  }
                 },
                 icon: const Icon(Icons.flashlight_on),
                 label: const Text("Flash the Message"))

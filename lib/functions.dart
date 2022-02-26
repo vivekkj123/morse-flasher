@@ -1,3 +1,5 @@
+import 'package:torch_light/torch_light.dart';
+
 Map morseChars = {
   'a': '.-',
   'b': '-...',
@@ -68,4 +70,24 @@ String textToMorse(String text) {
     });
   }
   return morsedText.join(" ");
+}
+
+void blinkMorse(String morse) async {
+  if (await TorchLight.isTorchAvailable()) {
+    for (var i = 0; i < morse.length; i++) {
+      if (morse[i] == "-") {
+        TorchLight.enableTorch();
+        await Future.delayed(const Duration(seconds: 3), () {
+          TorchLight.disableTorch();
+        });
+        // morsedText.add(value);
+        // prin1t(key);
+      } else if (morse[i] == ".") {
+        TorchLight.enableTorch();
+        await Future.delayed(const Duration(seconds: 1), () {
+          TorchLight.disableTorch();
+        });
+      }
+    }
+  }
 }
