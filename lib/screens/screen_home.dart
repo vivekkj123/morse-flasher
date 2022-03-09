@@ -40,9 +40,10 @@ class ScreenHome extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () async {
                         final message = messageController.text;
-                        final encrypted = textToMorse(message.toLowerCase());
+                        final encrypted =
+                            Functions().textToMorse(message.toLowerCase());
                         if (await TorchLight.isTorchAvailable()) {
-                          blinkMorse(encrypted);
+                          Functions().blinkMorse(encrypted);
                         } else {
                           showDialog(
                               context: context,
@@ -70,22 +71,6 @@ class ScreenHome extends StatelessWidget {
                               const Color(0xfff1efe3)),
                           foregroundColor: MaterialStateProperty.all<Color>(
                               const Color(0xff6c63ff)),
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50.0),
-                          ))),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: const Icon(Icons.stop_circle),
-                      style: ButtonStyle(
-                          padding: MaterialStateProperty.all<EdgeInsets>(
-                              const EdgeInsets.all(25)),
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                              const Color(0xfff1efe3)),
-                          foregroundColor: MaterialStateProperty.all<Color>(
-                              Color.fromARGB(255, 255, 99, 107)),
                           shape:
                               MaterialStateProperty.all<RoundedRectangleBorder>(
                                   RoundedRectangleBorder(
