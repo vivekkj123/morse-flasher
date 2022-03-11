@@ -16,7 +16,7 @@ Head to [releases page](https://github.com/vivekkj123/morse-flasher/releases) an
  Flutter/152
 
 ## Link to product walkthrough 📼
-[link to video]
+[Click Me](https://www.youtube.com/watch?v=xkmAbpITP30)
 
 ## How it Works ? ⚙️
 1. As the first step, the whole message is converted into Morse code.
