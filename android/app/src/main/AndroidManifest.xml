@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.morse_flasher">
    <application
-        android:label="morse_flasher"
+        android:label="Blinka morse"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
